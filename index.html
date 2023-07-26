@@ -9,28 +9,51 @@
     href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
     rel="stylesheet"
     />
-    <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-    <link rel="stylesheet" href="./assets/CSS/node_modules/bulma/css/bulma.css">
     <link rel="stylesheet" href="./assets/CSS/style.css" />
     <title>Movie FInder</title>
 </head>
-<body>
-  <section class="section">
-    <div class="container">
-      <h1 class="title">
-        Hello World
-      </h1>
-      <p class="subtitle">
-        My first website with <strong>Bulma</strong>!
-      </p>
+<body class="block">
+    <header class="columns">
+        <div id="header" class="column is-full has-background-primary">
+            <h1 class="title is-1">Movie Finder</h1>
+        </div>
+    </header>
+<section class="section">
+    <div class="block">
+        <div class="columns is-vcentered">
+        <div class="column is-full has-background-primary">Articles</div>
+        <!--Articles pulled from the Flixter API can be appended here. We will need to figure out how to format the data coming from the API. This API will need to be called on page load using a fetch call nested in a document.addEventListener('DOMContentLoaded', () => )-->
     </div>
-    <div class="button is-primary is-medium is-outlined">Button</div>
-    <div class="columns">
-        <div class="column">1</div>
-        <div class="column">2</div>
-        <div class="column">3</div>
-        <div class="column">4</div>
-      </div>
-  </section>
-  </body>
+    </div>
+</section>
+    <section class="block">
+    <div id="search-bar" class="container">
+        <div class="field is-grouped">
+        <div class="control is-half">
+            <input class="input is-primary" type="text" placeholder="Movie Name">
+            <!--We will need to pull the text value of this input field and append it to the URL of the next API call.-->
+        </div>
+        <div class="control is-one-quarter">
+            <button class="button is-primary is-focused">Search</button>
+            <!--Event listenter on this Api call will call the function wrapped around the next API call-->
+        </div>
+        </div>
+    </div>
+    </section>
+    <section class="section">
+        <div class="container">
+        <div class="columns is-3"> <!-- Larger column takes 8 units out of 12 (8/12) -->
+            <div class="column has-background-primary">
+                <p>History Buttons Go Here</p>
+                <!--These buttons should be generated each time the API is called and will load the data from the corresponding search from local storage-->
+            </div>
+            <div class="column is-9 is-offset-1 has-background-primary"> <!-- Smaller column takes 3 units out of 12 (3/12) and is offset by 1 unit -->
+                <p>Movie details go here.</p>
+                <!--This information will come from the second API call, will need to figure out how to format this data and display it on the screen. This will be stored in local storage and loaded when the corresponding history button is clicked.-->
+            </div>
+        </div>
+    </div>
+</section>
+</body>
