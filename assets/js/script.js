@@ -11,7 +11,6 @@ async function fetchAndDisplayArticles() {
     try {
         const response = await fetch(url, options);
         const data = await response.json();
-
         const articlesContainer = document.getElementById('articles-container');
 
         let count = 0;
@@ -51,4 +50,21 @@ function createArticleElement(article) {
 
     return articleElement;
 }
+
+
+async function movieSearch() {
+    var requestUrl = new URL ('http://www.omdbapi.com/?apikey=e9184d9c&t=&plot=full');
+    var movieName = document.getElementById('movie-name').value;
+
+    var search_Params = requestUrl.searchParams;
+    search_Params.set('t', movieName);
+
+    
+
+
+}
+
+
+
+
 document.addEventListener('DOMContentLoaded', fetchAndDisplayArticles);
