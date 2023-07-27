@@ -1,0 +1,20 @@
+#header {
+    text-align: center;
+    font-size: large;
+    padding-top: 20px;
+    max-height: 90px;
+}
+
+.column.is-full {
+    border-radius: 10px;
+}
+
+.column.has-background-primary {
+    border-radius: 10px;
+    height: 300px;
+}
+
+#search-bar {
+    display: flex;
+    justify-content: center;
+}
