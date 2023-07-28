@@ -34,26 +34,45 @@
     <div id="search-bar" class="container">
         <div class="field is-grouped">
         <div class="control is-half">
-            <input class="input is-primary" type="text" placeholder="Movie Name">
+            <div class="columns ">
+            <input id="movie-name" class="input is-primary is-rounded is-3" type="text" placeholder="Movie Name">
+            <input id="release-year" class="input is-primary is-rounded is-3" type="text" placeholder="Release Year">
+        
             <!--We will need to pull the text value of this input field and append it to the URL of the next API call.-->
-        </div>
+        
         <div class="control is-one-quarter">
-            <button class="button is-primary is-focused">Search</button>
+            <button id="submitButton" class="button is-primary is-focused js-modal-trigger">Search</button>
             <!--Event listenter on this Api call will call the function wrapped around the next API call-->
         </div>
+    </div>
+    </div>
         </div>
     </div>
     </section>
     <section class="section">
         <div class="container">
-        <div class="columns is-3"> <!-- Larger column takes 8 units out of 12 (8/12) -->
+        <div class="columns is-2"> <!-- Larger column takes 8 units out of 12 (8/12) -->
+            <div class="is-vcentered">
             <div class="column has-background-primary">
                 <p>History Buttons Go Here</p>
                 <!--These buttons should be generated each time the API is called and will load the data from the corresponding search from local storage-->
             </div>
-            <div class="column is-9 is-offset-1 has-background-primary"> <!-- Smaller column takes 3 units out of 12 (3/12) and is offset by 1 unit -->
-                <p>Movie details go here.</p>
-                <!--This information will come from the second API call, will need to figure out how to format this data and display it on the screen. This will be stored in local storage and loaded when the corresponding history button is clicked.-->
+            </div>
+            <div id="movie-box" class="column is-10 is-offset-1 has-background-primary is-vcentered"> <!-- Smaller column takes 3 units out of 12 (3/12) and is offset by 1 unit -->
+            <div class="columns is-vcentered">
+                <div id="img-Container" class="is-7 is-vcentered">
+                
+                </div>
+                <div id="text-Container" class="is-7">
+                
+                </div>
+
+
+            </div>
+            <div id="plot-container" class="is-vcentered">
+                
+            </div>    
+                
             </div>
         </div>
     </div>
