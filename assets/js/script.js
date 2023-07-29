@@ -38,6 +38,7 @@ function createArticleElement(article) {
     titleElement.innerHTML = article.title;
     articleElement.appendChild(titleElement);
     titleElement.setAttribute('style','color:black','')
+    titleElement.classList.add('subtitle', 'is-4');
 
     const imageElement = document.createElement('img');
     imageElement.src = article.mainImage.url;
@@ -47,11 +48,11 @@ function createArticleElement(article) {
     imageElement.setAttribute('style','padding:10px; border-radius:20px;');
 
     const linkElement = document.createElement('a');
-    linkElement.classList.add('button');
+    linkElement.classList.add('button', 'is-focused', 'is-dark');
     linkElement.href = article.link;
     linkElement.textContent = 'Read More';
     articleElement.appendChild(linkElement);
-    linkElement.setAttribute('style','color:blue')
+    linkElement.setAttribute('style','is-danger')
 
     return articleElement;
 }
@@ -71,8 +72,10 @@ async function movieSearch() {
     var movieBox = document.getElementById('movie-box');
     var imgContainer = document.getElementById('img-Container');
     var textContainer = document.getElementById('text-Container');
+    var plotContainer = document.getElementById('plot-container');
     imgContainer.innerHTML = '';
     textContainer.innerHTML = '';
+    plotContainer.innerHTML = '';
 
     
 
@@ -137,38 +140,46 @@ async function movieSearch() {
             movieTitle.classList.add('title', 'is-2', 'is-spaced');
             movieTitle.textContent = data.Title;
             textContainer.appendChild(movieTitle);
+            movieTitle.setAttribute('style', 'color:black');
 
             var release_year = document.createElement('h3');
             release_year.classList.add('subtitle', 'is-3');
             release_year.textContent = 'Release Year: ' + data.Year;
             textContainer.appendChild(release_year);
+            release_year.setAttribute('style', 'color:black');
             
             var genre = document.createElement('h3');
             genre.classList.add('subtitle', 'is-3');
             genre.textContent = 'Genre: ' + data.Genre;
             textContainer.appendChild(genre);
+            genre.setAttribute('style', 'color:black');
 
             var cast = document.createElement('h3');
             cast.classList.add('subtitle', 'is-3');
             cast.textContent = 'Cast: ' + data.Actors;
             textContainer.appendChild(cast);
+            cast.setAttribute('style', 'color:black');
 
             var runtime = document.createElement('h3');
             runtime.classList.add('subtitle', 'is-3', 'is-spaced');
             runtime.textContent = 'Runtime: ' + data.Runtime;
             textContainer.appendChild(runtime);
+            runtime.setAttribute('style', 'color:black');
 
             var plotTitle = document.createElement('h3');
             plotTitle.classList.add('subtitle', 'is-3');
             plotTitle.textContent = 'Movie Plot: ';
             textContainer.appendChild(plotTitle);
+            plotTitle.setAttribute('style', 'color:black');
 
 
-            var plotContainer = document.getElementById('plot-container');
             var plot = document.createElement('h4');
             plot.classList.add('subtitle', 'is-4');
             plot.textContent = data.Plot;
             plotContainer.appendChild(plot);
+            plot.setAttribute('style', 'color:black');
+            plotContainer.setAttribute('style', 'border-top:1px solid black; padding:12px');
+            
 
 
 
@@ -185,4 +196,4 @@ submitButton.addEventListener('click', movieSearch);
 
 
 
-//document.addEventListener('DOMContentLoaded', fetchAndDisplayArticles);
+document.addEventListener('DOMContentLoaded', fetchAndDisplayArticles);

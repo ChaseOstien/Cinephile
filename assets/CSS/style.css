@@ -9,7 +9,7 @@
     border-radius: 10px;
 }
 
-.column.has-background-primary {
+.column.has-background-danger {
     border-radius: 10px;
     /*height: 300px;*/
 }
@@ -33,4 +33,17 @@
 
 #text-Container, h2, h3, h4 {
     line-gap-override: 5px;
+}
+
+/*#plot-container {
+    border-top: 1px solid black;
+    padding: 12px;
+}*/
+
+.title.is-2.is-spaced {
+    padding-top: 20px;
+}
+
+.subtitle.is-4 {
+    margin-bottom: 15px;
 }
