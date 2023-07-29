@@ -58,11 +58,14 @@ function createArticleElement(article) {
 }
 
 var submitButton = document.getElementById('submitButton');
-
+var imgContainer = document.getElementById('img-Container');
+var textContainer = document.getElementById('text-Container');
+var plotContainer = document.getElementById('plot-container');
 
 async function movieSearch() {
     var requestUrl = new URL ('http://www.omdbapi.com/?apikey=e9184d9c&t=&y=&plot=full');
-    var movieName = document.getElementById('movie-name').value;
+    var str1 = document.getElementById('movie-name').value;
+    const movieName = str1.charAt(0).toUpperCase() + str1.slice(1);
     var releaseYear = document.getElementById('release-year').value;
     const alertModal = document.createElement('div');
     var search_Params = requestUrl.searchParams;
@@ -70,12 +73,12 @@ async function movieSearch() {
     search_Params.set('t', movieName);
     search_Params2.set('y', releaseYear);
     var movieBox = document.getElementById('movie-box');
-    var imgContainer = document.getElementById('img-Container');
-    var textContainer = document.getElementById('text-Container');
-    var plotContainer = document.getElementById('plot-container');
+    
     imgContainer.innerHTML = '';
     textContainer.innerHTML = '';
     plotContainer.innerHTML = '';
+    var movieSearches = [];
+    
 
     
 
@@ -180,13 +183,114 @@ async function movieSearch() {
             plot.setAttribute('style', 'color:black');
             plotContainer.setAttribute('style', 'border-top:1px solid black; padding:12px');
             
+        var movieItem = {
+            movieImg: movieImg.src,
+            movieTitle: movieTitle.textContent,
+            release_year: release_year.textContent,
+            genre: genre.textContent,
+            cast: cast.textContent,
+            runtime: runtime.textContent,
+            plotTitle: plotTitle.textContent,
+            plot: plot.textContent,
+        };
 
-
+        movieSearches.push(movieItem);
+        saveData(movieName, movieSearches);
 
 
     } catch(error) {
     console.log('Error fetching data', error)
 }
+
+searchHistory = document.getElementById('search-History');
+historyButton = document.createElement('button');
+const str = movieName;
+const str2 = str.charAt(0).toUpperCase() + str.slice(1);
+historyButton.textContent = str2;
+historyButton.classList.add('button', 'is-dark', 'is-focused');
+historyButton.setAttribute('style', 'padding:10px; margin:7px');
+//historyButton.textContent.toUpperCase();
+searchHistory.appendChild(historyButton);
+historyButton.addEventListener('click', async function () {
+    loadData(movieName);
+});
+
+}
+
+function loadData (movieName) {
+    const savedData = JSON.parse(localStorage.getItem('Movie-Searches'));
+
+    if (savedData && savedData[movieName]) {
+        const movieData = (savedData[movieName]);
+
+        imgContainer.innerHTML = '';
+        textContainer.innerHTML = '';
+        plotContainer.innerHTML = '';
+
+        movieImg = document.createElement('img');
+        movieImg.setAttribute('id', 'poster');
+        movieImg.height = 444;
+        movieImg.width = 300;
+        movieImg.setAttribute('id', 'poster');
+        
+        movieTitle = document.createElement('h2');
+        movieTitle.classList.add('title', 'is-2', 'is-spaced');
+        movieTitle.setAttribute('style', 'color:black');
+
+        release_year = document.createElement('h3');
+        release_year.classList.add('subtitle', 'is-3');
+        release_year.setAttribute('style', 'color:black');
+
+        genre = document.createElement('h3');
+        genre.classList.add('subtitle', 'is-3');
+        genre.setAttribute('style', 'color:black');
+
+        cast = document.createElement('h3');
+        cast.classList.add('subtitle', 'is-3');
+        cast.setAttribute('style', 'color:black');
+
+        runtime = document.createElement('h3');
+        runtime.classList.add('subtitle', 'is-3', 'is-spaced');
+        runtime.setAttribute('style', 'color:black');
+
+        plotTitle = document.createElement('h3');
+        plotTitle.classList.add('subtitle', 'is-3');
+        plotTitle.setAttribute('style', 'color:black');
+
+        plot = document.createElement('h4');
+        plot.classList.add('subtitle', 'is-4');
+        plot.setAttribute('style', 'color:black');
+        plotContainer.setAttribute('style', 'border-top:1px solid black; padding:12px');
+
+        const str = movieName;
+        const str2 = str.charAt(0).toUpperCase() + str.slice(1);
+        
+
+
+        movieTitle.textContent = movieData.movieName;
+        release_year.textContent = movieData.data[0].release_year;
+        movieImg.src = movieData.data[0].movieImg;
+        genre.textContent = movieData.data[0].genre;
+        cast.textContent = movieData.data[0].cast;
+        runtime.textContent = movieData.data[0].runtime;
+        plotTitle.textContent = movieData.data[0].plotTitle;
+        plot.textContent = movieData.data[0].plot;
+
+        imgContainer.append(movieImg);
+        textContainer.appendChild(movieTitle);
+        textContainer.appendChild(release_year);
+        textContainer.appendChild(genre);
+        textContainer.appendChild(cast);
+        textContainer.appendChild(runtime);
+        textContainer.appendChild(plotTitle);
+        plotContainer.appendChild(plot);
+    }
+}
+
+function saveData (movieName, data) {
+    const savedData = JSON.parse(localStorage.getItem('Movie-searches')) || {};
+    savedData[movieName] = { movieName: movieName, data: data };
+    localStorage.setItem('Movie-Searches', JSON.stringify(savedData));
 }
 
 
@@ -196,4 +300,4 @@ submitButton.addEventListener('click', movieSearch);
 
 
 
-document.addEventListener('DOMContentLoaded', fetchAndDisplayArticles);
+//document.addEventListener('DOMContentLoaded', fetchAndDisplayArticles);
