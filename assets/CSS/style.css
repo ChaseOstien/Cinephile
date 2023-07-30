@@ -47,3 +47,10 @@
 .subtitle.is-4 {
     margin-bottom: 15px;
 }
+
+#search-History {
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

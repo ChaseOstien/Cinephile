@@ -61,6 +61,7 @@ var submitButton = document.getElementById('submitButton');
 var imgContainer = document.getElementById('img-Container');
 var textContainer = document.getElementById('text-Container');
 var plotContainer = document.getElementById('plot-container');
+var movieBox = document.getElementById('movie-box');
 
 async function movieSearch() {
     var requestUrl = new URL ('http://www.omdbapi.com/?apikey=e9184d9c&t=&y=&plot=full');
@@ -72,12 +73,12 @@ async function movieSearch() {
     var search_Params2 = requestUrl.searchParams
     search_Params.set('t', movieName);
     search_Params2.set('y', releaseYear);
-    var movieBox = document.getElementById('movie-box');
+    const omdbSection = document.getElementById('OMDB');
     
     imgContainer.innerHTML = '';
     textContainer.innerHTML = '';
     plotContainer.innerHTML = '';
-    var movieSearches = [];
+    
     
 
     
@@ -120,7 +121,7 @@ async function movieSearch() {
     })*/
 } 
     
-
+    var movieSearches = [];
 
     try {
         
@@ -128,7 +129,7 @@ async function movieSearch() {
             const data = await response.json();
             console.log(data);
 
-            
+            omdbSection.setAttribute('style', 'display:flex');
             var movieImg = document.createElement('img');
             
             movieImg.setAttribute('id', 'poster');
@@ -212,52 +213,62 @@ historyButton.setAttribute('style', 'padding:10px; margin:7px');
 //historyButton.textContent.toUpperCase();
 searchHistory.appendChild(historyButton);
 historyButton.addEventListener('click', async function () {
+    
     loadData(movieName);
+    
 });
 
 }
 
 function loadData (movieName) {
-    const savedData = JSON.parse(localStorage.getItem('Movie-Searches'));
 
-    if (savedData && savedData[movieName]) {
-        const movieData = (savedData[movieName]);
+    const savedData = JSON.parse(localStorage.getItem('Movie-Searches'));
+    console.log(savedData);
+
+        
+
+
+    for (const movie in savedData) {
 
         imgContainer.innerHTML = '';
         textContainer.innerHTML = '';
         plotContainer.innerHTML = '';
+    
+        const movieData = savedData[movieName].data[0];
 
-        movieImg = document.createElement('img');
+        
+
+        const movieImg = document.createElement('img');
         movieImg.setAttribute('id', 'poster');
         movieImg.height = 444;
         movieImg.width = 300;
-        movieImg.setAttribute('id', 'poster');
         
-        movieTitle = document.createElement('h2');
+        
+        const movieTitle = document.createElement('h2');
         movieTitle.classList.add('title', 'is-2', 'is-spaced');
         movieTitle.setAttribute('style', 'color:black');
 
-        release_year = document.createElement('h3');
+        const release_year = document.createElement('h3');
         release_year.classList.add('subtitle', 'is-3');
         release_year.setAttribute('style', 'color:black');
 
-        genre = document.createElement('h3');
+        const genre = document.createElement('h3');
         genre.classList.add('subtitle', 'is-3');
         genre.setAttribute('style', 'color:black');
 
-        cast = document.createElement('h3');
+        const cast = document.createElement('h3');
         cast.classList.add('subtitle', 'is-3');
         cast.setAttribute('style', 'color:black');
 
-        runtime = document.createElement('h3');
+        const runtime = document.createElement('h3');
         runtime.classList.add('subtitle', 'is-3', 'is-spaced');
         runtime.setAttribute('style', 'color:black');
 
-        plotTitle = document.createElement('h3');
+        const plotTitle = document.createElement('h3');
         plotTitle.classList.add('subtitle', 'is-3');
         plotTitle.setAttribute('style', 'color:black');
 
-        plot = document.createElement('h4');
+        const plot = document.createElement('h4');
         plot.classList.add('subtitle', 'is-4');
         plot.setAttribute('style', 'color:black');
         plotContainer.setAttribute('style', 'border-top:1px solid black; padding:12px');
@@ -267,14 +278,16 @@ function loadData (movieName) {
         
 
 
-        movieTitle.textContent = movieData.movieName;
-        release_year.textContent = movieData.data[0].release_year;
-        movieImg.src = movieData.data[0].movieImg;
-        genre.textContent = movieData.data[0].genre;
-        cast.textContent = movieData.data[0].cast;
-        runtime.textContent = movieData.data[0].runtime;
-        plotTitle.textContent = movieData.data[0].plotTitle;
-        plot.textContent = movieData.data[0].plot;
+        movieTitle.textContent = movieData.movieTitle;
+        release_year.textContent = movieData.release_year;
+        movieImg.src = movieData.movieImg;
+        genre.textContent = movieData.genre;
+        cast.textContent = movieData.cast;
+        runtime.textContent = movieData.runtime;
+        plotTitle.textContent = movieData.plotTitle;
+        plot.textContent = movieData.plot;
+
+        
 
         imgContainer.append(movieImg);
         textContainer.appendChild(movieTitle);
@@ -284,15 +297,18 @@ function loadData (movieName) {
         textContainer.appendChild(runtime);
         textContainer.appendChild(plotTitle);
         plotContainer.appendChild(plot);
-    }
-}
+
+        
+
+        } 
+    } 
+
 
 function saveData (movieName, data) {
-    const savedData = JSON.parse(localStorage.getItem('Movie-searches')) || {};
+    const savedData = JSON.parse(localStorage.getItem('Movie-Searches')) || {};
     savedData[movieName] = { movieName: movieName, data: data };
     localStorage.setItem('Movie-Searches', JSON.stringify(savedData));
 }
-
 
 
 submitButton.addEventListener('click', movieSearch);
@@ -300,4 +316,4 @@ submitButton.addEventListener('click', movieSearch);
 
 
 
-//document.addEventListener('DOMContentLoaded', fetchAndDisplayArticles);
+document.addEventListener('DOMContentLoaded', fetchAndDisplayArticles);
