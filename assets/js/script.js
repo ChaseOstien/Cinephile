@@ -57,12 +57,14 @@ function createArticleElement(article) {
     return articleElement;
 }
 
+//Variable declarations for availablilty to following functions. 
 var submitButton = document.getElementById('submitButton');
 var imgContainer = document.getElementById('img-Container');
 var textContainer = document.getElementById('text-Container');
 var plotContainer = document.getElementById('plot-container');
 var movieBox = document.getElementById('movie-box');
 
+//Function to call OMDB API and generate movie info in the movie box section. This section is hidden until function is called and content is generated. 
 async function movieSearch() {
     var requestUrl = new URL ('http://www.omdbapi.com/?apikey=e9184d9c&t=&y=&plot=full');
     var str1 = document.getElementById('movie-name').value;
@@ -82,7 +84,7 @@ async function movieSearch() {
     
 
     
-
+    //if statement for modal or required box for Movie name input. 
     if (movieName === '') {
         
         /*alertModal.setAttribute('id', 'modalContainer');
@@ -120,11 +122,11 @@ async function movieSearch() {
         //document.addEventListener('click', closeModal);
     })*/
 } 
-    
+    //Array to hold movie objects. 
     var movieSearches = [];
 
     try {
-        
+        //code to render the movie content called from OMDB. 
         const response = await fetch(requestUrl);
             const data = await response.json();
             console.log(data);
@@ -183,7 +185,8 @@ async function movieSearch() {
             plotContainer.appendChild(plot);
             plot.setAttribute('style', 'color:black');
             plotContainer.setAttribute('style', 'border-top:1px solid black; padding:12px');
-            
+        
+        
         var movieItem = {
             movieImg: movieImg.src,
             movieTitle: movieTitle.textContent,
@@ -194,7 +197,7 @@ async function movieSearch() {
             plotTitle: plotTitle.textContent,
             plot: plot.textContent,
         };
-
+        //code to push rendered content into local storage array. 
         movieSearches.push(movieItem);
         saveData(movieName, movieSearches);
 
@@ -202,15 +205,16 @@ async function movieSearch() {
     } catch(error) {
     console.log('Error fetching data', error)
 }
-
+//code to generate the history buttons for each movie input and event listener for loadData function. 
 searchHistory = document.getElementById('search-History');
 historyButton = document.createElement('button');
+//code to capitalize first letter of movie name input. 
 const str = movieName;
 const str2 = str.charAt(0).toUpperCase() + str.slice(1);
+
 historyButton.textContent = str2;
 historyButton.classList.add('button', 'is-dark', 'is-focused');
 historyButton.setAttribute('style', 'padding:10px; margin:7px');
-//historyButton.textContent.toUpperCase();
 searchHistory.appendChild(historyButton);
 historyButton.addEventListener('click', async function () {
     
@@ -219,7 +223,7 @@ historyButton.addEventListener('click', async function () {
 });
 
 }
-
+//function to load previously rendered content when history buttons are clicked. 
 function loadData (movieName) {
 
     const savedData = JSON.parse(localStorage.getItem('Movie-Searches'));
@@ -303,17 +307,17 @@ function loadData (movieName) {
         } 
     } 
 
-
+//function delcaration for locak storage. 
 function saveData (movieName, data) {
     const savedData = JSON.parse(localStorage.getItem('Movie-Searches')) || {};
     savedData[movieName] = { movieName: movieName, data: data };
     localStorage.setItem('Movie-Searches', JSON.stringify(savedData));
 }
 
-
+//event listener for Search button. 
 submitButton.addEventListener('click', movieSearch);
 
 
+//remeber to comment the below eventlistner so that you don't call the Flixster api everytime the page reloads. 
 
-
-document.addEventListener('DOMContentLoaded', fetchAndDisplayArticles);
+//document.addEventListener('DOMContentLoaded', fetchAndDisplayArticles);
