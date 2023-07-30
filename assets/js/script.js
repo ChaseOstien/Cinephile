@@ -66,7 +66,7 @@ var movieBox = document.getElementById('movie-box');
 
 //Function to call OMDB API and generate movie info in the movie box section. This section is hidden until function is called and content is generated. 
 async function movieSearch() {
-    var requestUrl = new URL ('http://www.omdbapi.com/?apikey=e9184d9c&t=&y=&plot=full');
+    var requestUrl = new URL ('https://www.omdbapi.com/?apikey=e9184d9c&t=&y=&plot=full');
     var str1 = document.getElementById('movie-name').value;
     const movieName = str1.charAt(0).toUpperCase() + str1.slice(1);
     var releaseYear = document.getElementById('release-year').value;
