@@ -11,10 +11,26 @@
 
 .column.has-background-primary {
     border-radius: 10px;
-    height: 300px;
+    /*height: 300px;*/
 }
 
 #search-bar {
     display: flex;
     justify-content: center;
+}
+
+#movie-name {
+    margin-right: 50px;
+}
+
+#release-year {
+    margin-right: 50px;
+}
+
+#poster {
+    padding: 20px;
+}
+
+#text-Container, h2, h3, h4 {
+    line-gap-override: 5px;
 }
