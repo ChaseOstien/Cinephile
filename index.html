@@ -22,7 +22,7 @@
 <section class="section">
     <div class="block">
         <div class="columns is-vcentered">
-        <div id="articles-container" class="column is-full has-background-danger">Articles</div>
+        <div id="articles-container" class="column is-full has-background-danger"></div>
         <div id ='img' class = "text-align:center"></div>
         <div id ='h2'></div>
         <!--Articles pulled from the Flixter API can be appended here. We will need to figure out how to format the data coming from the API. This API will need to be called on page load using a fetch call nested in a document.addEventListener('DOMContentLoaded', () => )-->
@@ -34,13 +34,13 @@
         <div class="field is-grouped">
         <div class="control is-half">
             <div class="columns ">
-            <input id="movie-name" class="input is-primary is-rounded is-3" type="text" placeholder="Movie Name">
-            <input id="release-year" class="input is-primary is-rounded is-3" type="text" placeholder="Release Year">
+            <input id="movie-name" class="input is-danger is-rounded is-3" type="text" placeholder="Movie Name">
+            <input id="release-year" class="input is-danger is-rounded is-3" type="text" placeholder="Release Year">
         
             <!--We will need to pull the text value of this input field and append it to the URL of the next API call.-->
         
         <div class="control is-one-quarter">
-            <button id="submitButton" class="button is-primary is-focused js-modal-trigger">Search</button>
+            <button id="submitButton" class="button is-dark is-focused js-modal-trigger">Search</button>
             <!--Event listenter on this Api call will call the function wrapped around the next API call-->
         </div>
     </div>
@@ -50,14 +50,13 @@
     </section>
     <section class="section">
         <div class="container">
-        <div class="columns is-2"> <!-- Larger column takes 8 units out of 12 (8/12) -->
+        <div id="OMDB" class="columns is-2" style="display:none"> <!-- Larger column takes 8 units out of 12 (8/12) -->
             <div class="is-vcentered">
-            <div class="column has-background-primary">
-                <p>History Buttons Go Here</p>
+            <div id="search-History" class="column has-background-danger">
                 <!--These buttons should be generated each time the API is called and will load the data from the corresponding search from local storage-->
             </div>
             </div>
-            <div id="movie-box" class="column is-10 is-offset-1 has-background-primary is-vcentered"> <!-- Smaller column takes 3 units out of 12 (3/12) and is offset by 1 unit -->
+            <div id="movie-box" class="column is-9 is-offset-1 has-background-danger is-vcentered"> <!-- Smaller column takes 3 units out of 12 (3/12) and is offset by 1 unit -->
             <div class="columns is-vcentered">
                 <div id="img-Container" class="is-7 is-vcentered">
                 
