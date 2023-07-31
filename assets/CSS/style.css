@@ -54,3 +54,14 @@
     flex-direction: column;
     justify-content: center;
 }
+
+#articles-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#movie-box {
+    margin-left: 50px;
+}
