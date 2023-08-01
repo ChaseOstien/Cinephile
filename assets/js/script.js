@@ -8,7 +8,7 @@ async function fetchAndDisplayArticles(page,perPage) {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': 'f86b1736f2msh8e554cb4e67e76fp1e6530jsn0e9c049ba3ce',
+            'X-RapidAPI-Key': 'df82c378afmsh04d5d8c64736776p195c67jsn08a335bf8152',
             'X-RapidAPI-Host': 'flixster.p.rapidapi.com'
         }
     };
@@ -18,27 +18,12 @@ async function fetchAndDisplayArticles(page,perPage) {
         const data = await response.json();
         const articlesContainer = document.getElementById('articles-container');
 
-        /*let count = 0;
-        // Loop through the articles and create the article elements to append to the container
-        data.data.newsStories.forEach(article => {
-                if (count < 3) {
-                    const articleElement = createArticleElement(article);
-                    articlesContainer.appendChild(articleElement);
-                    count++;
-                } else {
-                    return;
-                }
-            
-        });*/
         // Calculate the starting and ending index for the current page
         const startIndex = (page - 1) * perPage;
         const endIndex = startIndex + perPage;
         const section1 = document.getElementById("section-1");
         // Clear the previous articles from the container
         articlesContainer.innerHTML = '';
-
-        //section1.appendChild(backButton)
-        //section1.appendChild(nextButton)
 
         // Loop through the articles and create the article elements to append to the container
         for (let i = startIndex; i < endIndex && i < data.data.newsStories.length; i++) {
@@ -84,67 +69,39 @@ var imgContainer = document.getElementById('img-Container');
 var textContainer = document.getElementById('text-Container');
 var plotContainer = document.getElementById('plot-container');
 var movieBox = document.getElementById('movie-box');
+var str1 = document.getElementById('movie-name');
+var movieName = document.getElementById('movie-name').value;
+document.addEventListener('DOMContentLoaded', checkInput);
+str1.addEventListener('input', inputChecked);
+str1.addEventListener('blur', inputChecked);
+submitButton.addEventListener('click', checkInput);
 
 //Function to call OMDB API and generate movie info in the movie box section. This section is hidden until function is called and content is generated. 
 async function movieSearch() {
     var requestUrl = new URL ('https://www.omdbapi.com/?apikey=e9184d9c&t=&y=&plot=full');
-    var str1 = document.getElementById('movie-name').value;
-    const movieName = str1.charAt(0).toUpperCase() + str1.slice(1);
     var releaseYear = document.getElementById('release-year').value;
     const alertModal = document.createElement('div');
+    var str3 = document.getElementById('movie-name').value;
+    var movieName = str3.charAt(0).toUpperCase() + str3.slice(1);
     var search_Params = requestUrl.searchParams;
     var search_Params2 = requestUrl.searchParams
     search_Params.set('t', movieName);
     search_Params2.set('y', releaseYear);
     const omdbSection = document.getElementById('OMDB');
-
+    
     str1.required = true;
+
+    
     
     imgContainer.innerHTML = '';
     textContainer.innerHTML = '';
     plotContainer.innerHTML = '';
     
     
-
+    
     
     //if statement for modal or required box for Movie name input. 
-    if (movieName === '') {
-        
-        /*alertModal.setAttribute('id', 'modalContainer');
-        alertModal.classList.add('modal');
-        
-        submitButton.setAttribute('data-target', 'submitButton');
-
-        const modalBackground = document.createElement('div');
-        modalBackground.classList.add('modal-background', 'is-primary');
-
-
-        const modalContent = document.createElement('div');
-        modalContent.classList.add('modal-content', 'is-primary');
-        const modalText = document.createTextNode('Enter a movie name!')
-        modalContent.appendChild(modalText);
-
-        const closeButton = document.createElement('button');
-        closeButton.classList.add('modal-close', 'is-large');
-        closeButton.setAttribute('aria-label', 'close');
-
-        alertModal.appendChild(modalBackground);
-        alertModal.appendChild(modalContent);
-        alertModal.appendChild(closeButton);
-
-        submitButton.appendChild(alertModal);
-
-    document.addEventListener('DOMContentLoadedcon', () => {
-        function openModal (alertModal) {
-            alertModal.classList.add('is-active');
-        }
-        function closeModal() {
-            alertModal.classList.remove('is-active');
-        }
-
-        //document.addEventListener('click', closeModal);
-    })*/
-} 
+    
     //Array to hold movie objects. 
     var movieSearches = [];
 
@@ -158,7 +115,6 @@ async function movieSearch() {
             var movieImg = document.createElement('img');
             
             movieImg.setAttribute('id', 'poster');
-            //movieImg.classList.add('image');
             movieImg.src = data.Poster;
             movieImg.height = 444;
             movieImg.width = 300;
@@ -338,8 +294,26 @@ function saveData (movieName, data) {
     localStorage.setItem('Movie-Searches', JSON.stringify(savedData));
 }
 
+function checkInput() {
+    if (movieName.trim() === '') {
+        submitButton.disabled = true;
+    } else {
+        submitButton.disabled = false;
+    }
+    return;
+    } 
+
+function inputChecked () {
+    
+        submitButton.disabled = false;
+    }
+
+
+
+
 //event listener for Search button. 
 submitButton.addEventListener('click', movieSearch);
+
 
 document.addEventListener('DOMContentLoaded', () => {
     // Initially fetch and display the first page of articles
@@ -347,13 +321,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add event listener to the "Next" button
     
+    if (currentPage === 1) {
+        backButton.disabled = true;
+    }
+    
+
     nextButton.addEventListener('click', () => {
         // Increment the current page and fetch the next set of articles
         currentPage++;
+        backButton.disabled = false;
+        if (currentPage === 7) {
+            nextButton.disabled = true;
+        }
         fetchAndDisplayArticles(currentPage, articlesPerPage);
     });
 
-
+    
 
     // Add event listener to the "Back" button
     
@@ -362,8 +345,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (currentPage > 1) {
             // Decrement the current page and fetch the previous set of articles
             currentPage--;
-            fetchAndDisplayArticles(currentPage, articlesPerPage);
+            if (currentPage === 1) {
+                backButton.disabled = true;
         }
-    });
+        nextButton.disabled = false;
+            fetchAndDisplayArticles(currentPage, articlesPerPage);
+        } 
+        
 });
-
+});

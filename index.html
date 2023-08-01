@@ -45,16 +45,19 @@
     <div id="search-bar" class="container">
         <div class="field is-grouped">
         <div class="control is-half">
+        <form>
             <div id="input-group" class="columns">
-            <input id="movie-name" class="input is-danger is-rounded is-3" type="text" placeholder="Movie Name">
+            <input id="movie-name" class="input is-danger is-rounded is-3" type="text" placeholder="Movie Name" required>
             <input id="release-year" class="input is-danger is-rounded is-3" type="text" placeholder="Release Year">
         
             <!--We will need to pull the text value of this input field and append it to the URL of the next API call.-->
         
         <div id="submitButton1" class="control is-one-quarter">
-            <button id="submitButton" class="button is-dark is-focused js-modal-trigger">Search</button>
+            <button type="button" id="submitButton" class="button is-dark is-focused js-modal-trigger">Search</button>
             <!--Event listenter on this Api call will call the function wrapped around the next API call-->
         </div>
+    </div>
+</form>
     </div>
     </div>
         </div>
