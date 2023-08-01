@@ -1,3 +1,8 @@
+body {
+font-family: 'Agdasima', sans-serif;
+font-family: 'Libre Baskerville', serif;
+}
+
 #header {
     text-align: center;
     font-size: large;

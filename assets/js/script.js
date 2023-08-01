@@ -320,4 +320,4 @@ submitButton.addEventListener('click', movieSearch);
 
 //remeber to comment the below eventlistner so that you don't call the Flixster api everytime the page reloads. 
 
-//document.addEventListener('DOMContentLoaded', fetchAndDisplayArticles);
+document.addEventListener('DOMContentLoaded', fetchAndDisplayArticles);
