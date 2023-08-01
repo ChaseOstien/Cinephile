@@ -82,3 +82,12 @@ font-family: 'Libre Baskerville', serif;
     margin-left: 50px;
 }
 
+article {
+    transform: translate(0, 0);
+    transition: 0.2s;
+}
+
+article:hover {
+    transform: translate(-2%, -2%);
+    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.4);
+}
