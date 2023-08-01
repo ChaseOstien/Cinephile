@@ -20,12 +20,16 @@
             <h1 class="title is-1">Cinephile</h1>
         </div>
     </header>
-<section class="section">
+<section id="section-1" class="section">
     <div class="block">
         <div class="columns is-vcentered">
         <div id="articles-container" class="column is-10 is-offset-1 has-background-danger"></div>
         <div id ='img' class = "text-align:center"></div>
         <div id ='h2'></div>
+        <div id = 'buttons' class = 'columns field is-grouped'>
+            <button id="backButton" class="button is-dark is-focused is-1">Back</button>
+            <button id="nextButton" class="button is-dark is-focused is-1">Next</button>
+        </div>
         <!--Articles pulled from the Flixter API can be appended here. We will need to figure out how to format the data coming from the API. This API will need to be called on page load using a fetch call nested in a document.addEventListener('DOMContentLoaded', () => )-->
     </div>
     </div>

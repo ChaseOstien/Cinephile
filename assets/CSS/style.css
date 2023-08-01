@@ -55,6 +55,11 @@
     justify-content: center;
 }
 
+#buttons {
+    display: flex;
+    justify-content: center;
+}
+
 #articles-container {
     display: flex;
     flex-direction: column;
@@ -65,3 +70,4 @@
 #movie-box {
     margin-left: 50px;
 }
+
