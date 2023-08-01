@@ -32,8 +32,13 @@ font-family: 'Libre Baskerville', serif;
     margin-right: 50px;
 }
 
-#poster {
-    padding: 20px;
+/* #poster {
+    padding: 20px; 
+
+} */
+
+#img-Container2 {
+    padding:20px;
 }
 
 #text-Container, h2, h3, h4 {
