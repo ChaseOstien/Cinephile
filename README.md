@@ -1,4 +1,4 @@
-# cinephile
+# Cinephile
 
 ## Description
 
