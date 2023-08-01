@@ -1,5 +1,5 @@
 let currentPage = 1;
-const articlesPerPage = 3;
+const articlesPerPage = 6;
 const nextButton = document.getElementById('nextButton');
 const backButton = document.getElementById('backButton');
 
@@ -53,7 +53,7 @@ async function fetchAndDisplayArticles(page,perPage) {
 // Helper function to create an article element
 function createArticleElement(article) {
     const articleElement = document.createElement('article');
-    articleElement.setAttribute('style','display: flex; flex-direction: column; justify-content: center; align-items: center; padding:10px;');
+    articleElement.setAttribute('style','display: flex; flex-direction: row; justify-content: center; align-items: center; padding:25px; flex-wrap: wrap; width: 500px; min-height: 430px; border: 1px solid black; border-radius: 20px; margin: 10px;');
 
     const titleElement = document.createElement('h2');
     titleElement.innerHTML = article.title;
@@ -97,6 +97,8 @@ async function movieSearch() {
     search_Params.set('t', movieName);
     search_Params2.set('y', releaseYear);
     const omdbSection = document.getElementById('OMDB');
+
+    str1.required = true;
     
     imgContainer.innerHTML = '';
     textContainer.innerHTML = '';
