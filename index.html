@@ -45,13 +45,13 @@
     <div id="search-bar" class="container">
         <div class="field is-grouped">
         <div class="control is-half">
-            <div class="columns ">
+            <div id="input-group" class="columns">
             <input id="movie-name" class="input is-danger is-rounded is-3" type="text" placeholder="Movie Name">
             <input id="release-year" class="input is-danger is-rounded is-3" type="text" placeholder="Release Year">
         
             <!--We will need to pull the text value of this input field and append it to the URL of the next API call.-->
         
-        <div class="control is-one-quarter">
+        <div id="submitButton1" class="control is-one-quarter">
             <button id="submitButton" class="button is-dark is-focused js-modal-trigger">Search</button>
             <!--Event listenter on this Api call will call the function wrapped around the next API call-->
         </div>
@@ -60,9 +60,9 @@
         </div>
     </div>
     </section>
-    <section class="section">
+    <section id="omdbSection" class="section">
         <div class="container">
-        <div id="OMDB" class="columns" style="display:none"> <!-- Larger column takes 8 units out of 12 (8/12) -->
+        <div id="OMDB" class="columns is-mobile" style="display:none"> <!-- Larger column takes 8 units out of 12 (8/12) -->
             <div class="is-vcentered">
             <div id="search-History" class="column is-narrow has-background-danger">
                 <!--These buttons should be generated each time the API is called and will load the data from the corresponding search from local storage-->

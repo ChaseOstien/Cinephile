@@ -45,6 +45,11 @@ font-family: 'Libre Baskerville', serif;
     line-gap-override: 5px;
 }
 
+#text-Container {
+    padding-left: 15px;
+}
+
+
 /*#plot-container {
     border-top: 1px solid black;
     padding: 12px;
@@ -63,6 +68,8 @@ font-family: 'Libre Baskerville', serif;
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+    
 }
 
 #buttons {
@@ -83,6 +90,10 @@ font-family: 'Libre Baskerville', serif;
     flex-wrap: wrap;
 }
 
+#omdbSection {
+    padding-top: 35px;
+}
+
 #movie-box {
     margin-left: 50px;
 }
@@ -95,4 +106,22 @@ article {
 article:hover {
     transform: translate(-2%, -2%);
     box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.4);
+}
+
+@media screen and (min-width: 500px) {
+    #search-History {
+    flex: none;
+    width: unset;
+    margin-bottom: 25px;
+    }
+}
+
+@media screen and (min-width: 500px) {
+    #movie-name, #release-year {
+        margin-bottom: 15px;
+    }
+    #submitButton1 {
+        display: flex;
+        justify-content: center;
+    }
 }
