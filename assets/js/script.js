@@ -45,7 +45,7 @@ function createArticleElement(article) {
     articleElement.appendChild(imageElement);
     imageElement.height=400;
     imageElement.width=400;
-    imageElement.setAttribute('style','padding:10px; border-radius:20px;');
+    imageElement.setAttribute('style','margin:10px; border-radius:20px; border: solid; border-color: black;');
 
     const linkElement = document.createElement('a');
     linkElement.classList.add('button', 'is-focused', 'is-dark');
@@ -141,6 +141,7 @@ async function movieSearch() {
             movieImg.width = 300;
             console.log(data.Poster);
             imgContainer.append(movieImg);
+            poster.setAttribute('style','border: 2px solid black;');
 
             var movieTitle = document.createElement('h2');
             movieTitle.classList.add('title', 'is-2', 'is-spaced');
@@ -320,4 +321,4 @@ submitButton.addEventListener('click', movieSearch);
 
 //remeber to comment the below eventlistner so that you don't call the Flixster api everytime the page reloads. 
 
-//document.addEventListener('DOMContentLoaded', fetchAndDisplayArticles);
+document.addEventListener('DOMContentLoaded', fetchAndDisplayArticles);
