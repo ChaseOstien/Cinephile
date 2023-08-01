@@ -154,7 +154,7 @@ async function movieSearch() {
             const data = await response.json();
             console.log(data);
 
-            omdbSection.setAttribute('style', 'display:flex');
+            omdbSection.setAttribute('style', 'display:flex; flex-wrap:wrap; justify-content:center');
             var movieImg = document.createElement('img');
             
             movieImg.setAttribute('id', 'poster');
