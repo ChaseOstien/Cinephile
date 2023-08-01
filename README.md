@@ -45,6 +45,6 @@ MIT
 
 ## Screenshot
 
-![Cinephile image](assets/img/Cinephile%20screenshot.jpg)
+![Cinephile image](./assets/img/Cinephile%20screenshot.jpg)
 
 ---
