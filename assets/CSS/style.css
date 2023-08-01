@@ -1,3 +1,8 @@
+body {
+font-family: 'Agdasima', sans-serif;
+font-family: 'Libre Baskerville', serif;
+}
+
 #header {
     text-align: center;
     font-size: large;
@@ -58,6 +63,11 @@
 #buttons {
     display: flex;
     justify-content: center;
+    margin-bottom: 50px;
+}
+
+#backButton {
+    margin-right: 40px;
 }
 
 #articles-container {
