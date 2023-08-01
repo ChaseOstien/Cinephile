@@ -1,4 +1,9 @@
-async function fetchAndDisplayArticles() {
+let currentPage = 1;
+const articlesPerPage = 3;
+const nextButton = document.getElementById('nextButton');
+const backButton = document.getElementById('backButton');
+
+async function fetchAndDisplayArticles(page,perPage) {
     const url = 'https://flixster.p.rapidapi.com/news/list';
     const options = {
         method: 'GET',
@@ -13,7 +18,7 @@ async function fetchAndDisplayArticles() {
         const data = await response.json();
         const articlesContainer = document.getElementById('articles-container');
 
-        let count = 0;
+        /*let count = 0;
         // Loop through the articles and create the article elements to append to the container
         data.data.newsStories.forEach(article => {
                 if (count < 3) {
@@ -24,7 +29,23 @@ async function fetchAndDisplayArticles() {
                     return;
                 }
             
-        });
+        });*/
+        // Calculate the starting and ending index for the current page
+        const startIndex = (page - 1) * perPage;
+        const endIndex = startIndex + perPage;
+        const section1 = document.getElementById("section-1");
+        // Clear the previous articles from the container
+        articlesContainer.innerHTML = '';
+
+        section1.appendChild(backButton)
+        section1.appendChild(nextButton)
+
+        // Loop through the articles and create the article elements to append to the container
+        for (let i = startIndex; i < endIndex && i < data.data.newsStories.length; i++) {
+            const article = data.data.newsStories[i];
+            const articleElement = createArticleElement(article);
+            articlesContainer.appendChild(articleElement);
+        }
     } catch (error) {
         console.error(error);
     }
@@ -53,7 +74,7 @@ function createArticleElement(article) {
     linkElement.textContent = 'Read More';
     articleElement.appendChild(linkElement);
     linkElement.setAttribute('style','is-danger')
-
+    
     return articleElement;
 }
 
@@ -320,4 +341,4 @@ submitButton.addEventListener('click', movieSearch);
 
 //remeber to comment the below eventlistner so that you don't call the Flixster api everytime the page reloads. 
 
-document.addEventListener('DOMContentLoaded', fetchAndDisplayArticles);
+//document.addEventListener('DOMContentLoaded', fetchAndDisplayArticles);
