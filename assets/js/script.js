@@ -1,5 +1,5 @@
 let currentPage = 1;
-const articlesPerPage = 3;
+const articlesPerPage = 6;
 const nextButton = document.getElementById('nextButton');
 const backButton = document.getElementById('backButton');
 
@@ -53,7 +53,7 @@ async function fetchAndDisplayArticles(page,perPage) {
 // Helper function to create an article element
 function createArticleElement(article) {
     const articleElement = document.createElement('article');
-    articleElement.setAttribute('style','display: flex; flex-direction: column; justify-content: center; align-items: center; padding:10px;');
+    articleElement.setAttribute('style','display: flex; flex-direction: row; justify-content: center; align-items: center; padding:25px; flex-wrap: wrap; width: 500px; min-height: 430px; border: 1px solid black; border-radius: 20px; margin: 10px;');
 
     const titleElement = document.createElement('h2');
     titleElement.innerHTML = article.title;
@@ -66,7 +66,7 @@ function createArticleElement(article) {
     articleElement.appendChild(imageElement);
     imageElement.height=400;
     imageElement.width=400;
-    imageElement.setAttribute('style','padding:10px; border-radius:20px;');
+    imageElement.setAttribute('style','margin:10px; border-radius:20px; border: solid; border-color: black;');
 
     const linkElement = document.createElement('a');
     linkElement.classList.add('button', 'is-focused', 'is-dark');
@@ -97,6 +97,8 @@ async function movieSearch() {
     search_Params.set('t', movieName);
     search_Params2.set('y', releaseYear);
     const omdbSection = document.getElementById('OMDB');
+
+    str1.required = true;
     
     imgContainer.innerHTML = '';
     textContainer.innerHTML = '';
@@ -162,6 +164,7 @@ async function movieSearch() {
             movieImg.width = 300;
             console.log(data.Poster);
             imgContainer.append(movieImg);
+            poster.setAttribute('style','border: 2px solid black;');
 
             var movieTitle = document.createElement('h2');
             movieTitle.classList.add('title', 'is-2', 'is-spaced');
@@ -350,6 +353,8 @@ document.addEventListener('DOMContentLoaded', () => {
         fetchAndDisplayArticles(currentPage, articlesPerPage);
     });
 
+
+
     // Add event listener to the "Back" button
     
     backButton.addEventListener('click', () => {
@@ -361,3 +366,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+

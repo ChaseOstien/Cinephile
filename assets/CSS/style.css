@@ -32,8 +32,13 @@ font-family: 'Libre Baskerville', serif;
     margin-right: 50px;
 }
 
-#poster {
-    padding: 20px;
+/* #poster {
+    padding: 20px; 
+
+} */
+
+#img-Container2 {
+    padding:20px;
 }
 
 #text-Container, h2, h3, h4 {
@@ -72,12 +77,22 @@ font-family: 'Libre Baskerville', serif;
 
 #articles-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 #movie-box {
     margin-left: 50px;
 }
 
+article {
+    transform: translate(0, 0);
+    transition: 0.2s;
+}
+
+article:hover {
+    transform: translate(-2%, -2%);
+    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.4);
+}
