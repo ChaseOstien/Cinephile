@@ -23,7 +23,7 @@
 <section id="section-1" class="section">
     <div class="block">
         <div class="columns is-vcentered">
-        <div id="articles-container" class="column is-full has-background-danger"></div>
+        <div id="articles-container" class="column is-10 is-offset-1 has-background-danger"></div>
         <div id ='img' class = "text-align:center"></div>
         <div id ='h2'></div>
         <div id = 'buttons' class = 'columns field is-grouped'>
@@ -55,13 +55,13 @@
     </section>
     <section class="section">
         <div class="container">
-        <div id="OMDB" class="columns is-2" style="display:none"> <!-- Larger column takes 8 units out of 12 (8/12) -->
+        <div id="OMDB" class="columns" style="display:none"> <!-- Larger column takes 8 units out of 12 (8/12) -->
             <div class="is-vcentered">
-            <div id="search-History" class="column has-background-danger">
+            <div id="search-History" class="column is-narrow has-background-danger">
                 <!--These buttons should be generated each time the API is called and will load the data from the corresponding search from local storage-->
             </div>
             </div>
-            <div id="movie-box" class="column is-9 is-offset-1 has-background-danger is-vcentered"> <!-- Smaller column takes 3 units out of 12 (3/12) and is offset by 1 unit -->
+            <div id="movie-box" class="column is-9  has-background-danger is-vcentered is-narrow"> <!-- Smaller column takes 3 units out of 12 (3/12) and is offset by 1 unit -->
             <div class="columns is-vcentered">
                 <div id="img-Container" class="is-7 is-vcentered">
                 
@@ -75,10 +75,10 @@
             <div id="plot-container" class="is-vcentered">
                 
             </div>    
-                
+            </div>
+            </div>
             </div>
         </div>
-    </div>
 </section>
 <script src="./assets/js/script.js"></script>
 </body>
