@@ -37,8 +37,8 @@ async function fetchAndDisplayArticles(page,perPage) {
         // Clear the previous articles from the container
         articlesContainer.innerHTML = '';
 
-        section1.appendChild(backButton)
-        section1.appendChild(nextButton)
+        //section1.appendChild(backButton)
+        //section1.appendChild(nextButton)
 
         // Loop through the articles and create the article elements to append to the container
         for (let i = startIndex; i < endIndex && i < data.data.newsStories.length; i++) {
@@ -338,7 +338,26 @@ function saveData (movieName, data) {
 //event listener for Search button. 
 submitButton.addEventListener('click', movieSearch);
 
+document.addEventListener('DOMContentLoaded', () => {
+    // Initially fetch and display the first page of articles
+    fetchAndDisplayArticles(currentPage, articlesPerPage);
 
-//remeber to comment the below eventlistner so that you don't call the Flixster api everytime the page reloads. 
+    // Add event listener to the "Next" button
+    
+    nextButton.addEventListener('click', () => {
+        // Increment the current page and fetch the next set of articles
+        currentPage++;
+        fetchAndDisplayArticles(currentPage, articlesPerPage);
+    });
 
-//document.addEventListener('DOMContentLoaded', fetchAndDisplayArticles);
+    // Add event listener to the "Back" button
+    
+    backButton.addEventListener('click', () => {
+        // Check if the current page is greater than 1 to prevent going back below page 1
+        if (currentPage > 1) {
+            // Decrement the current page and fetch the previous set of articles
+            currentPage--;
+            fetchAndDisplayArticles(currentPage, articlesPerPage);
+        }
+    });
+});
