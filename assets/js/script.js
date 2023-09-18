@@ -8,7 +8,7 @@ async function fetchAndDisplayArticles(page,perPage) {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': 'df82c378afmsh04d5d8c64736776p195c67jsn08a335bf8152',
+            'X-RapidAPI-Key': '48085eadd3mshbc89d6c2943fe3dp142394jsnc647e445b0a3',
             'X-RapidAPI-Host': 'flixster.p.rapidapi.com'
         }
     };
